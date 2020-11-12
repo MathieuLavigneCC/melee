@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "melee"
+    }
+  },
+  "defaultProject": "melee",
+  "cli": {
+    "analytics": "731621f8-1027-482e-940d-e24cfb383b13"
+  }
 }
