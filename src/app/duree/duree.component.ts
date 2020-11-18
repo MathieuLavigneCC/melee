@@ -15,6 +15,7 @@ export class DureeComponent implements OnInit {
   joursAffiches = 0;
   heuresAffichees = 0;
   minutesAffichees = 0;
+  formate = '';
 
   constructor() {
     console.log('duree init');
@@ -53,17 +54,39 @@ export class DureeComponent implements OnInit {
     return this.minutesAffichees;
   }
 
-  formatter($event?: MouseEvent): void {
+  formater($event?: MouseEvent): void {
     this.valeur = this.jours * 8 + this.heures + this.minutes / 60;
     this.valeurChange.emit(this.valeur);
     console.log(this.valeur);
     this.joursAffiches = Math.floor(this.valeur / 8);
     this.heuresAffichees = Math.floor(this.valeur % 8);
-    this.minutesAffichees = Math.floor(this.valeur % 1 * 60);
+    this.minutesAffichees = Math.round(this.valeur % 1 * 60);
+    this.formate = this.calculerFormate();
   }
 
   private actualiserValeur(): void {
     this.valeur = this.joursAffiches * 8 + this.heuresAffichees + this.minutesAffichees / 60;
     this.valeurChange.emit(this.valeur);
+  }
+
+  private calculerFormate(): string {
+    const formattes = [];
+
+    const joursAffiches = this.joursAffiches;
+    if (joursAffiches) {
+      formattes.push(joursAffiches + 'j');
+    }
+
+    const heuresAffichees = this.heuresAffichees;
+    if (heuresAffichees) {
+      formattes.push(heuresAffichees + 'h');
+    }
+
+    const minutesAffichees = this.minutesAffichees;
+    if (minutesAffichees) {
+      formattes.push(minutesAffichees + 'm');
+    }
+
+    return formattes.join(' ');
   }
 }
