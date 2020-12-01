@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Imputation} from '../imputation/imputation.model';
 
 @Component({
   selector: 'app-imputations',
@@ -7,34 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ImputationsComponent implements OnInit {
 
-  cacheRealise: number;
-  cacheAttendu: number;
   pourcentage = 0;
+  cumulN1 = new Imputation();
+  jourN = new Imputation();
+  cumulN = new Imputation();
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
-  }
-
-  set realise(valeur: number) {
-    this.cacheRealise = valeur;
-    this.calculer();
-  }
-
-  get realise(): number {
-    return this.cacheRealise;
-  }
-
-  set attendu(valeur: number) {
-    this.cacheAttendu = valeur;
-    this.calculer();
-  }
-
-  get attendu(): number {
-    return this.cacheAttendu;
-  }
-
-  calculer($event?: MouseEvent): void {
-    this.pourcentage = Math.round(this.realise / this.attendu * 100);
   }
 }

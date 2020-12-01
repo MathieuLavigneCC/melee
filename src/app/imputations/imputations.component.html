@@ -1,3 +1,79 @@
-<app-duree [(valeur)]="realise"></app-duree><br/>
-<app-duree [(valeur)]="attendu"></app-duree><br/>
-{{ pourcentage }} %
+<div class="container">
+  <div class="row">
+    <h1>Imputations</h1>
+  </div>
+
+  <div class="row">
+    <h2>Saisie des imputations</h2>
+  </div>
+  <div class="row">
+    <form>
+      <nav class="nav nav-tabs">
+        <a class="nav-item nav-link active" href="#tab1" data-toggle="tab" role="tab">Cumul jour n-1</a>
+        <a class="nav-item nav-link" href="#tab2" data-toggle="tab" role="tab">Jour n</a>
+        <a class="nav-item nav-link" href="#tab3" data-toggle="tab" role="tab">Cumul jour n</a>
+      </nav>
+      <div class="tab-content">
+        <div class="tab-pane show active" id="tab1">
+          <app-imputation [(imputation)]="cumulN1"></app-imputation>
+        </div>
+        <div class="tab-pane" id="tab2">
+          <app-imputation [(imputation)]="jourN"></app-imputation>
+        </div>
+        <div class="tab-pane" id="tab3">
+          <app-imputation [(imputation)]="cumulN"></app-imputation>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="row">
+
+  </div>
+
+  <div class="row">
+    <h2>Tableau Confluence à copier-coller</h2>
+  </div>
+  <div class="row">
+    <table class="relative-table wrapped confluenceTable">
+      <colgroup>
+        <col style="width: 116.0px;"/>
+        <col style="width: 147.0px;"/>
+        <col style="width: 158.0px;"/>
+        <col style="width: 154.0px;"/>
+        <col/>
+      </colgroup>
+      <tbody>
+      <tr>
+        <th class="confluenceTh">Indicateur</th>
+        <th class="confluenceTh">Cumul jour n-1</th>
+        <th class="confluenceTh">Jour n</th>
+        <th class="confluenceTh">Cumul jour n</th>
+        <th class="confluenceTh">Commentaire</th>
+      </tr>
+      <tr>
+        <td class="confluenceTd">Imput&eacute;</td>
+        <td class="confluenceTd">{{cumulN1.realise.formater()}}</td>
+        <td class="confluenceTd">{{jourN.realise.formater()}}</td>
+        <td class="confluenceTd">{{cumulN.realise.formater()}}</td>
+        <td class="confluenceTd"><br/></td>
+      </tr>
+      <tr>
+        <td class="confluenceTd"><a
+          href="https://docdev.compta.com/display/REPORT/Sprint+REPORT-2020.11.2#SprintREPORT2020.11.2-Planification">Pr&eacute;vu</a>
+        </td>
+        <td class="confluenceTd">{{cumulN1.attendu.formater()}}</td>
+        <td class="confluenceTd">{{jourN.attendu.formater()}}</td>
+        <td class="confluenceTd">{{cumulN.attendu.formater()}}</td>
+        <td class="confluenceTd"><br/></td>
+      </tr>
+      <tr>
+        <td class="confluenceTd">Facteur</td>
+        <td class="confluenceTd">{{ cumulN1.realise.parRapportA(cumulN1.attendu) }} %</td>
+        <td class="confluenceTd">{{ jourN.realise.parRapportA(jourN.attendu) }} %</td>
+        <td class="confluenceTd">{{ cumulN.realise.parRapportA(cumulN.attendu) }} %</td>
+        <td class="confluenceTd"><br/></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
